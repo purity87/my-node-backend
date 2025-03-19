@@ -25,7 +25,7 @@ async function main() {
 
         // 5. document 찾기
         const documents = await collection.find({ name: 'purity'}).toArray();
-        console.log(' ckwdms anstj: ', documents);
+        console.log(' 찾은 문서: ', documents);
 
         // 6. document 갱신하기
         await collection.updateOne({ name: 'purity' }, { $set: { age: randomAge + 1 }})
