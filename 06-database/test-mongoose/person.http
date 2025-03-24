@@ -1,0 +1,31 @@
+# node mongoose-crud.js 실행 후 동작.
+
+# 1. server 변수 설정
+@server = http://localhost:3000
+
+### 2. GET 요청 보내기
+GET {{ server }}/person
+
+### 3. POST 요청 보내기
+POST {{ server }}/person
+Content-Type: application/json
+
+{
+    "name": "Purity Choi",
+    "age": 31,
+    "email": "purity@backend.com"
+}
+
+### 4. 생성한 Document 확인하기
+GET {{ server }}/person/purity@backend.com
+
+### 5. PUT 요청 보내기, 문서 수정하기
+PUT {{ server }}/person/purity@backend.com
+Content-Type: application/json
+
+{
+    "age": 29
+}
+
+### 6. Document 삭제하기
+DELETE {{ server }}/person/purity@backend.com
