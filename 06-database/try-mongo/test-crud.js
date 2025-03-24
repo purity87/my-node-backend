@@ -36,8 +36,8 @@ async function main() {
         console.log('갱신된 문서: ', updatedDocuments);
 
         // 8. 문서 삭제하기
-        await collection.deleteOne( { name: "purity"} )
-        console.log('문서 삭제')
+        // await collection.deleteOne( { name: "purity"} )
+        // console.log('문서 삭제')
 
         // 연결 끊기
         await client.close();
