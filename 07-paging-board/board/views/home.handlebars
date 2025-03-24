@@ -1,0 +1,178 @@
+<div class="board">
+    <h1>{{title}}</h1>  <!-- 1. 타이틀 영역 -->
+
+    <!-- 2. 검색어 영역 -->
+    <div class="search-area">
+        <input type="text" name="search" id="search" value="" size="50" placeholder="검색어를 입력하세요." />
+        <button>검색</button>
+        <br />
+    </div>
+
+
+    <!-- 3. 글쓰기 페이지 이동 링크 -->
+    <div class="write-area">
+        <a href="/write"> 글쓰기</a>
+        <br />
+    </div>
+
+    <!-- 4. 글 목록 -->
+    <div>
+        <table class="post-list">
+            <thead>
+            <tr>
+                <th>번호</th>
+                <th style="width: 50%">제목</th>
+                <th>작성자</th>
+                <th>조회수</th>
+                <th>등록일</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="align-content: center">1</td>
+                    <td style="align-content: center"><a href="/detail">타이틀</a></td>
+                    <td style="align-content: center">작성자 이름</td>
+                    <td style="align-content: center">99999</td>
+                    <td style="align-content: center">2025.03.24</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <!-- 5. 페이징 영역 -->
+    <div class="page-nav">
+        <a href="#" class="prev">&lt;&lt;</a>
+        <a href="#" class="prev">&lt;</a>
+        <a href="#" class="page">1</a>
+        <a href="#" class="page">2</a>
+        <a href="#" class="page">3</a>
+        <a href="#" class="page">4</a>
+        <a href="#" class="next">&gt;</a>
+        <a href="#" class="next">&gt;&gt;</a>
+    </div>
+</div>
+
+<style>
+    body, h1, table {
+        margin: 0;
+        padding: 0;
+        text-align: center ;
+    }
+
+    /* Basic styling */
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    /* Board styles */
+    .board {
+        width: 80%;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    /* Search area styles */
+    .search-area {
+        margin: 20px auto;
+        padding: 20px 15px;
+        border: 1px solid #ddd;
+        text-align: center;
+        display: flex;
+        width: 97%;
+    }
+    .search-area input {
+        flex: 1; /* 남은 공간을 모두 차지 */
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px 0 0 4px; /* 좌측 모서리 둥글게 */
+        outline: none;
+    }
+
+    .search-area button {
+        margin-left: 10px;
+        padding: 5px 20px;
+        font-size: 16px;
+        border: 1px solid #ddd;
+        background-color: #f2f2f2;
+        color: #333;
+        cursor: pointer;
+        border-radius: 5px; /* 우측 모서리 둥글게 */
+    }
+
+    .search-area button:hover {
+        background-color: #f2f2f2;
+    }
+
+
+    /* Write area styles */
+    .write-area {
+        text-align: right;
+        margin: 10px 0;
+        width: 100%
+    }
+
+    .write-area a {
+        display: inline-block;
+        padding: 5px 10px;
+        text-decoration: none;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        color: #333;
+
+        background-color: #f2f2f2;
+    }
+
+    .write-area a:hover {
+        background-color: #ddd;
+    }
+
+
+
+    /* Post List styles */
+    .post-list {
+        border-collapse: collapse;
+        width: 100%;
+        border: 1px solid #ddd;
+        margin-bottom: 20px;
+    }
+
+    .post-list th, .post-list td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: center;
+    }
+
+    .post-list th {
+        background-color: #f2f2f2;
+    }
+
+    /* Page Navigation styles */
+    .page-nav {
+        text-align: center;
+    }
+
+    .page-nav a {
+        display: inline-block;
+        margin: 0 5px;
+        padding: 5px 10px;
+        text-decoration: none;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        color: #333;
+    }
+
+    .page-nav .page {
+        background-color: #f2f2f2;
+    }
+
+    .page-nav a:hover {
+        background-color: #ddd;
+    }
+
+    .page-nav .prev,
+    .page-nav .next {
+        font-weight: bold;
+    }
+</style>
