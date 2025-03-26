@@ -3,8 +3,8 @@
 
     <!-- 2. 검색어 영역 -->
     <div class="search-area">
-        <input type="text" name="search" id="search" value="" size="50" placeholder="검색어를 입력하세요." />
-        <button>검색</button>
+        <input type="text" name="search" id="search" value="{{search}}" size="50" placeholder="검색어를 입력하세요." />
+        <button onclick="location.href=`/?search=${document.getElementById('search').value}`">검색</button>
         <br />
     </div>
 
@@ -20,7 +20,6 @@
         <table class="post-list">
             <thead>
             <tr>
-                <th>번호</th>
                 <th style="width: 50%">제목</th>
                 <th>작성자</th>
                 <th>조회수</th>
@@ -28,13 +27,14 @@
             </tr>
             </thead>
             <tbody>
+            {{#each posts}}
                 <tr>
-                    <td style="align-content: center">1</td>
-                    <td style="align-content: center"><a href="/detail">타이틀</a></td>
-                    <td style="align-content: center">작성자 이름</td>
-                    <td style="align-content: center">99999</td>
-                    <td style="align-content: center">2025.03.24</td>
+                    <td style="align-content: center"><a href="/detail/{{_id}}">{{title}}</a></td>
+                    <td style="align-content: center">{{writer}}</td>
+                    <td style="align-content: center">{{hits}}</td>
+                    <td style="align-content: center">{{dateString createdDt}}</td>
                 </tr>
+            {{/each}}
             </tbody>
         </table>
     </div>
@@ -42,14 +42,23 @@
 
     <!-- 5. 페이징 영역 -->
     <div class="page-nav">
-        <a href="#" class="prev">&lt;&lt;</a>
-        <a href="#" class="prev">&lt;</a>
-        <a href="#" class="page">1</a>
-        <a href="#" class="page">2</a>
-        <a href="#" class="page">3</a>
-        <a href="#" class="page">4</a>
-        <a href="#" class="next">&gt;</a>
-        <a href="#" class="next">&gt;&gt;</a>
+        {{#with paginator}}
+            <a href="/?page=1&search={{@root.search}}" class="prev">&lt;&lt;</a>
+            {{#if hasPrev}}
+                <a href="/?page={{prevPage}}&search={{@root.search}}" class="prev">&lt;</a>
+            {{else}}
+                <a class="prev">&lt;</a>
+            {{/if}}
+            {{#each pageList}}
+                {{#if (eq this @root.paginator.page)}}
+                        <a class="page">{{.}}</a>
+                    {{else}}
+                    <a href="/?page={{.}}&search={{@root.search}}" class="page">{{.}}</a>
+                {{/if}}
+            {{/each}}
+            <a href="/?page={{nextPage}}&search={{@root.search}}" class="next">&gt;</a>
+            <a href="/?page={{lastPage}}&search={{@root.search}}" class="next">&gt;&gt;</a>
+        {{/with}}
     </div>
 </div>
 
@@ -65,12 +74,25 @@
         font-family: Arial, sans-serif;
     }
 
+
     /* Board styles */
     .board {
         width: 80%;
         margin: 0 auto;
         padding: 20px;
+
     }
+    /* 제목 h1 스타일 */
+    h1 {
+        width: 100%;
+        text-align: center;
+        font-size: 2rem;
+        padding: 20px 0;
+        color: #c0c2dc;
+        margin: 0;
+        box-sizing: border-box; /* 여백을 포함한 전체 너비를 설정 */
+    }
+
 
     /* Search area styles */
     .search-area {
@@ -95,14 +117,14 @@
         padding: 5px 20px;
         font-size: 16px;
         border: 1px solid #ddd;
-        background-color: #f2f2f2;
-        color: #333;
+        background-color: #c0c2dc;
+        color: #fff;
         cursor: pointer;
         border-radius: 5px; /* 우측 모서리 둥글게 */
     }
 
     .search-area button:hover {
-        background-color: #f2f2f2;
+        background-color: #989bc7;
     }
 
 
@@ -119,13 +141,13 @@
         text-decoration: none;
         border: 1px solid #ddd;
         border-radius: 5px;
-        color: #333;
+        color: #fff;
 
-        background-color: #f2f2f2;
+        background-color: #c0c2dc;
     }
 
     .write-area a:hover {
-        background-color: #ddd;
+        background-color: #989bc7;
     }
 
 
@@ -142,10 +164,17 @@
         border: 1px solid #ddd;
         padding: 8px;
         text-align: center;
+        text-decoration: none;  /* 밑줄 제거 */
+        color: inherit;         /* 링크 색상을 부모 요소의 색상으로 설정 */
+    }
+    .post-list td > a {
+        text-decoration: none;  /* 밑줄 제거 */
+        color: inherit;         /* 링크 색상을 부모 요소의 색상으로 설정 */
     }
 
     .post-list th {
-        background-color: #f2f2f2;
+        background-color: #c0c2dc;
+        color: #fff;
     }
 
     /* Page Navigation styles */
@@ -160,19 +189,20 @@
         text-decoration: none;
         border: 1px solid #ddd;
         border-radius: 5px;
-        color: #333;
+        color: #fff;
     }
 
     .page-nav .page {
-        background-color: #f2f2f2;
+        background-color: #c0c2dc;
     }
 
     .page-nav a:hover {
-        background-color: #ddd;
+        background-color: #989bc7;
     }
 
     .page-nav .prev,
     .page-nav .next {
         font-weight: bold;
+        background-color: #adb3c1;
     }
 </style>
